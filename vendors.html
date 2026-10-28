@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Lounge | Emiline's Antique Mall</title>
+    <style>
+        :root {
+            --primary: #4b638e;
+            --primary-dark: #374b6f;
+            --accent: #fed736;
+            --accent-hover: #e6c122;
+            --accent-text: #2c2500;
+            --bg: #f4f6fa;
+            --card-bg: #ffffff;
+            --text: #2f3542;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+        }
+
+        /* Password Gate */
+        #gate { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            padding: 1rem;
+        }
+        .gate-box { 
+            background: #ffffff; 
+            padding: 3rem 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18); 
+            text-align: center; 
+            max-width: 420px;
+            width: 100%;
+            border-top: 5px solid var(--accent);
+        }
+        .gate-box img { max-height: 60px; margin-bottom: 1.2rem; }
+        .gate-box h2 { margin: 0 0 0.5rem 0; color: var(--primary-dark); font-size: 1.8rem; }
+        .gate-box p { color: #57606f; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        input[type="password"] { 
+            padding: 0.85rem; 
+            font-size: 1rem; 
+            border: 2px solid #e0e5ed; 
+            border-radius: 6px; 
+            margin-bottom: 1.2rem; 
+            width: 80%; 
+            display: block; 
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .gate-btn { 
+            padding: 0.85rem 2.2rem; 
+            font-size: 1rem; 
+            background-color: var(--accent); 
+            color: var(--accent-text); 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            transition: background-color 0.2s;
+        }
+        .gate-btn:hover { background-color: var(--accent-hover); }
+        #error-msg { color: #e74c3c; margin-top: 1rem; font-weight: 600; display: none; }
+        .gate-return { display: block; margin-top: 1.5rem; font-size: 0.9rem; color: #57606f; text-decoration: none; }
+        .gate-return:hover { color: var(--primary-dark); text-decoration: underline; }
+
+        /* Lounge Page (Displayed after correct password) */
+        #lounge { display: none; }
+
+        nav { 
+            background-color: var(--primary); 
+            padding: 0.8rem 2rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+        .brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            text-decoration: none; 
+        }
+        .brand img { height: 48px; width: auto; border-radius: 4px; display: block; }
+        .brand-name { color: #ffffff; font-size: 1.4rem; font-weight: 700; }
+        .brand-name span { color: var(--accent); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 600;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .lounge-header { 
+            background-color: var(--primary-dark); 
+            color: #ffffff; 
+            padding: 3rem 1.5rem; 
+            text-align: center; 
+            border-bottom: 5px solid var(--accent);
+        }
+        .lounge-header h1 { margin: 0; font-size: 2.4rem; }
+        .lounge-header h1 span { color: var(--accent); }
+        .lounge-header p { font-size: 1.1rem; margin-top: 0.8rem; color: #e4e9f2; }
+
+        .container { max-width: 1050px; margin: 3rem auto 5rem auto; padding: 0 1.5rem; }
+        .module { 
+            background: #ffffff; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06); 
+            margin-bottom: 2.5rem; 
+            padding: 1.5rem; 
+            border-top: 4px solid var(--primary);
+        }
+        .module h2 { 
+            margin-top: 0; 
+            color: var(--primary-dark); 
+            border-bottom: 2px solid #eef1f6; 
+            padding-bottom: 0.8rem; 
+            font-size: 1.5rem;
+        }
+        iframe { width: 100%; height: 750px; border: none; display: block; border-radius: 6px; }
+
+        footer { 
+            text-align: center; 
+            padding: 2.5rem 1.5rem; 
+            background-color: var(--primary-dark); 
+            color: #ffffff; 
+            border-top: 4px solid var(--accent);
+        }
+        footer p { margin: 0.5rem 0; font-size: 0.95rem; color: #e4e9f2; }
+        footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 1rem; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Password Gate Screen -->
+    <div id="gate">
+        <div class="gate-box">
+            <img src="images/logo.jpg.jpg" alt="Emiline's Antique Mall" onerror="this.src='images/logo.png'; this.onerror=null;">
+            <h2>Vendor Lounge</h2>
+            <p>Enter the booth password to review and claim customer submissions.</p>
+            <input type="password" id="passInput" placeholder="Password">
+            <button class="gate-btn" onclick="checkPassword()">Enter Lounge</button>
+            <div id="error-msg">Incorrect password. Please try again.</div>
+            <a href="index.html" class="gate-return">&larr; Return to main site</a>
+        </div>
+    </div>
+
+    <!-- Protected Lounge View -->
+    <div id="lounge">
+        <nav>
+            <a href="index.html" class="brand">
+                <img src="images/logo.jpg.jpg" alt="Emiline's Antique Mall" onerror="this.src='images/logo.png'; this.onerror=null;">
+                <span class="brand-name"><span>Emiline's</span> Antique Mall</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="vendor-spotlight.html">Vendor Spotlight</a>
+                <a href="submit.html">Sell Your Items</a>
+                <a href="vendors.html" class="active">Vendor Lounge</a>
+            </div>
+        </nav>
+
+        <header class="lounge-header">
+            <h1>Vendor <span>Inventory Lounge</span></h1>
+            <p>Review customer submissions below and submit the claim form to claim an item for your booth.</p>
+        </header>
+
+        <div class="container">
+            <div class="module">
+                <h2>1. Available Customer Submissions</h2>
+                <iframe src="https://airtable.com/embed/appWrHDiaXuFqJcsf/shrtGwJ0enetlkGDe?viewControls=on" title="Available Items Gallery"></iframe>
+            </div>
+
+            <div class="module">
+                <h2>2. Claim an Item</h2>
+                <iframe src="https://airtable.com/embed/appWrHDiaXuFqJcsf/shrHoOX5gPzELJDEn" title="Claim Item Form"></iframe>
+            </div>
+        </div>
+
+<!-- Return Item to Pool Section -->
+        <div class="card" style="margin-top: 30px;">
+            <h2>Return an Item to the Pool</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                If a piece you claimed does not work out after contacting the seller, submit this quick release form to return it to the floor for other vendors.
+            </p>
+            <iframe 
+                class="airtable-embed" 
+                src="https://airtable.com/embed/appWrHDiaXuFqJcsf/shrGgpmcw5TpTbwur" 
+                frameborder="0" 
+                onmousewheel="" 
+                width="100%" 
+                height="533" 
+                style="background: transparent; border: 1px solid #ccc; border-radius: 8px;">
+            </iframe>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Emiline's Antique Mall. All rights reserved.</p>
+            <p>1415 10th Street West, Palmetto, FL 34221 | (941) 729-5282</p>
+            <p><a href="index.html">&larr; Return to Homepage</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var input = document.getElementById("passInput").value;
+            // Set your vendor access password here:
+            if (input === "antique2026") {
+                document.getElementById("gate").style.display = "none";
+                document.getElementById("lounge").style.display = "block";
+            } else {
+                document.getElementById("error-msg").style.display = "block";
+            }
+        }
+        
+        document.getElementById("passInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>

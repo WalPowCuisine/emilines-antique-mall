@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Spotlight | Emiline's Antique Mall</title>
+    <style>
+        :root {
+            --primary: #4b638e;
+            --primary-dark: #374b6f;
+            --accent: #fed736;
+            --accent-text: #2c2500;
+            --bg: #f4f6fa;
+            --card-bg: #ffffff;
+            --text: #2f3542;
+            --text-light: #57606f;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+        }
+        
+        nav { 
+            background-color: var(--primary); 
+            padding: 0.8rem 2rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+        .brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            text-decoration: none; 
+        }
+        .brand img { height: 48px; width: auto; border-radius: 4px; display: block; }
+        .brand-name { color: #ffffff; font-size: 1.4rem; font-weight: 700; }
+        .brand-name span { color: var(--accent); }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 600;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .page-header { 
+            background-color: var(--primary-dark); 
+            color: #ffffff; 
+            text-align: center; 
+            padding: 3.5rem 1.5rem; 
+            border-bottom: 5px solid var(--accent);
+        }
+        .page-header h1 { margin: 0; font-size: 2.6rem; }
+        .page-header h1 span { color: var(--accent); }
+        .page-header p { font-size: 1.15rem; margin-top: 0.8rem; color: #e4e9f2; max-width: 650px; margin-left: auto; margin-right: auto; }
+
+        .container { max-width: 960px; margin: 3rem auto 5rem auto; padding: 0 1.5rem; }
+
+        /* Vendor Profile Card */
+        .vendor-card { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06); 
+            padding: 2.2rem; 
+            margin-bottom: 3rem; 
+            border-top: 4px solid var(--primary);
+        }
+        
+        /* Top Section: Photo on Left, Details on Right */
+        .vendor-header { display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 1.5rem; }
+        .vendor-photo { 
+            width: 170px; 
+            height: 170px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            border: 3px solid var(--accent); 
+            flex-shrink: 0; 
+        }
+        .vendor-meta { flex-grow: 1; }
+        .vendor-meta h2 { margin: 0 0 0.5rem 0; color: var(--primary-dark); font-size: 1.9rem; }
+        .vendor-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.8rem; }
+        .badge { 
+            background-color: var(--accent); 
+            color: var(--accent-text); 
+            padding: 0.35rem 0.9rem; 
+            border-radius: 20px; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+        }
+        .badge.room { 
+            background-color: var(--primary); 
+            color: #ffffff; 
+        }
+        .vendor-specialty { color: var(--text-light); font-style: italic; margin-bottom: 0.5rem; font-size: 1rem; }
+
+        /* Story Section */
+        .vendor-story { margin-top: 1rem; border-top: 1px solid #eef1f6; padding-top: 1.2rem; }
+        .vendor-story h3 { color: var(--primary-dark); margin: 0 0 0.6rem 0; font-size: 1.25rem; }
+        .vendor-story p { color: var(--text-light); line-height: 1.75; font-size: 1.05rem; }
+
+        /* Room Item Photo Gallery */
+        .room-gallery-title { font-size: 1.15rem; color: var(--primary-dark); margin: 1.6rem 0 0.8rem 0; font-weight: 700; }
+        .room-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+        .room-gallery img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; border: 1px solid #e0e5ed; transition: transform 0.2s; }
+        .room-gallery img:hover { transform: scale(1.02); }
+
+        footer { 
+            text-align: center; 
+            padding: 2.5rem 1.5rem; 
+            background-color: var(--primary-dark); 
+            color: #ffffff; 
+            border-top: 4px solid var(--accent);
+        }
+        footer p { margin: 0.5rem 0; font-size: 0.95rem; color: #e4e9f2; }
+        footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 650px) {
+            nav { flex-direction: column; gap: 1rem; text-align: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .vendor-header { flex-direction: column; align-items: center; text-align: center; }
+            .vendor-badges { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="brand">
+            <img src="images/logo.jpg.jpg" alt="Emiline's Antique Mall" onerror="this.src='images/logo.png'; this.onerror=null;">
+            <span class="brand-name"><span>Emiline's</span> Antique Mall</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="vendor-spotlight.html" class="active">Vendor Spotlight</a>
+<li><a href="contact.html">Contact Us</a></li>
+            <a href="submit.html">Sell Your Items</a>
+            <a href="vendors.html">Vendor Lounge</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Meet Our <span>Vendors</span></h1>
+        <p>The collectors, pickers and curators behind our community of 50+ booths at Emiline's</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Vendor Profile: Teresa Bockes -->
+        <div class="vendor-card">
+            
+            <div class="vendor-header">
+                <!-- 1. Vendor Picture in Upper Left Corner -->
+                <img src="images/vendors/booth39-profile.jpg" alt="Teresa Bockes Portrait" class="vendor-photo" onerror="this.src='https://placehold.co/300x300?text=Teresa+Bockes'">
+                
+                <div class="vendor-meta">
+                    <h2>Teresa Bockes</h2>
+                    <!-- 2. Booth & Room Badges -->
+                    <div class="vendor-badges">
+                        <span class="badge">Booth #39</span>
+                        <span class="badge room">Room 4</span>
+                    </div>
+                    <div class="vendor-specialty">Specializing in: Depression glass, ceramics, vintage kitchenware, books, jewelry, and home decor</div>
+                </div>
+            </div>
+
+            <!-- 3. How the Vendor Got Started -->
+            <div class="vendor-story">
+                <h3>Welcome to Room 4 — Where History Has a Story</h3>
+                <p>
+                    My Godfather, Uncle John, was my mentor and the inspiration behind everything you see here. For over 40 years, he poured his heart into the antique business. We both shared a deep belief that antiques are far more than just old objects—they are tangible, living pieces of history.
+                </p>
+                <p>
+                    For six and a half years, I traveled monthly from Seattle, Washington, to keep his room alive with treasures. Today, I am proud to be a full-time Florida resident, carrying on his incredible 40-year legacy right here. With our shared background in customer service, my favorite part of the day is helping you find exactly what you're looking for.
+                </p>
+                <p>
+                    Please take your time exploring "our" room, filled with curated collections of Depression glass, ceramics, vintage kitchenware, books, jewelry, and home decor. Thank you for being a part of Uncle John's legacy!
+                </p>
+            </div>
+
+            <!-- 4. Room Item Gallery -->
+            <div class="room-gallery-title">A Look Inside Room 4</div>
+            <div class="room-gallery">
+                <img src="images/vendors/booth39-item1.jpeg" alt="Room 4 Collection" onerror="this.src='https://placehold.co/400x300?text=Room+4+Item'">
+                <img src="images/vendors/booth39-item2.jpeg" alt="Room 4 Collection" onerror="this.src='https://placehold.co/400x300?text=Room+4+Item'">
+                <img src="images/vendors/booth39-item3.jpeg" alt="Room 4 Collection" onerror="this.src='https://placehold.co/400x300?text=Room+4+Item'">
+                <img src="images/vendors/booth39-item4.jpeg" alt="Room 4 Collection" onerror="this.src='https://placehold.co/400x300?text=Room+4+Item'">
+            </div>
+
+        </div>
+        <!-- End Vendor Profile: Teresa Bockes -->
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Emiline's Antique Mall. All rights reserved.</p>
+        <p>1415 10th Street West, Palmetto, FL 34221 | (941) 729-5282</p>
+        <p><a href="index.html">&larr; Return to Homepage</a> | <a href="vendors.html">Vendor Lounge</a></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Emiline's Antique Mall</title>
+    <style>
+        :root {
+            --primary-blue: #4b638e;
+            --accent-gold: #fed736;
+            --text-dark: #2c3e50;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1.25rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            letter-spacing: 0.5px;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent-gold);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .page-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-card, .form-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .detail-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .detail-item strong {
+            display: block;
+            color: var(--primary-blue);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-item a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .detail-item a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccd2d9;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(75, 99, 142, 0.15);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem 1.8rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #3b4e70;
+        }
+
+        .map-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 380px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="index.html">Emiline's Antique Mall</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="vendor-spotlight.html">Vendor Spotlight</a></li>
+                    <li><a href="submit.html">Sell Your Items</a></li>
+                    <li><a href="vendors.html">Vendor Lounge</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Get In Touch</h2>
+            <p>Have questions about inventory, vendor space, or selling your items? Reach out below or visit us in Palmetto.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="info-card">
+                <h3 class="card-title">Mall Information</h3>
+                
+                <div class="detail-item">
+                    <strong>Address</strong>
+                    <p>1415 10th Street West<br>Palmetto, FL 34221</p>
+                </div>
+
+                <div class="detail-item">
+                    <strong>Phone</strong>
+                    <p><a href="tel:9417295282">(941) 729-5282</a></p>
+                </div>
+
+                <div class="detail-item">
+                    <strong>Email</strong>
+                    <p><a href="mailto:emilinesantique@gmail.com">emilinesantique@gmail.com</a></p>
+                </div>
+
+                <div class="detail-item">
+                    <strong>Hours of Operation</strong>
+                    <p>Monday – Saturday: 10:00 AM – 5:00 PM<br>Sunday: 12:00 PM – 5:00 PM</p>
+                </div>
+
+                <div class="detail-item">
+                    <strong>Follow Us</strong>
+                    <p><a href="https://www.facebook.com/emilinesantiques/" target="_blank" rel="noopener">Facebook: @emilinesantiques</a></p>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h3 class="card-title">Send a Message</h3>
+                <!-- Netlify Forms enabled -->
+                <form name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact">
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(941) 000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h3 class="card-title">Our Location</h3>
+            <p style="color: #666; margin-top: 0.25rem;">Conveniently located off 10th Street West in Palmetto, Florida.</p>
+            <div class="map-container">
+                <iframe 
+                    title="Emiline's Antique Mall Location"
+                    src="https://maps.google.com/maps?q=1415%2010th%20Street%20West,%20Palmetto,%20FL%2034221&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Emiline's Antique Mall and Collectables. All rights reserved. | 1415 10th Street West, Palmetto, FL 34221 | (941) 729-5282</p>
+    </footer>
+
+</body>
+</html>
